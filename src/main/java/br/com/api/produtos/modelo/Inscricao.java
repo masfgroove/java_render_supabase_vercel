@@ -15,7 +15,7 @@ public class Inscricao {
     private Integer idade;
     private String nomeResponsavel;
     private String telefone;
-    private String email;
+    private String email; 
     private String lojaIndicacao;
     
     @Column(length = 1000)

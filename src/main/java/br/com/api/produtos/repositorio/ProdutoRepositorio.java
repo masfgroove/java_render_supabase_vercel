@@ -3,9 +3,8 @@ package br.com.api.produtos.repositorio;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.api.produtos.modelo.ProdutoModelo;
+import br.com.api.produtos.modelo.Produto;
 
 @Repository
-public interface ProdutoRepositorio extends CrudRepository<ProdutoModelo, Long> {
-
+public interface ProdutoRepositorio extends CrudRepository<Produto, Long> {
 }

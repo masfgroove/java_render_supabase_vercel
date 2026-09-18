@@ -17,29 +17,29 @@ import br.com.api.produtos.modelo.RespostaModelo;
 import br.com.api.produtos.servico.CategoriaServico;
 
 @RestController
-@RequestMapping("/api/categorias")
+@RequestMapping("/categorias")
 @CrossOrigin(origins = "*")
 public class CategoriaControle {
 
     @Autowired
     private CategoriaServico servico;
 
-    @GetMapping("")
+    @GetMapping("/listar")
     public Iterable<Categoria> listar() {
         return servico.listar();
     }
 
-    @PostMapping("")
+    @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@RequestBody Categoria obj) {
         return servico.cadastrarAlterar(obj, "cadastrar");
     }
 
-    @PutMapping("")
+    @PutMapping("/alterar")
     public ResponseEntity<?> alterar(@RequestBody Categoria obj) {
         return servico.cadastrarAlterar(obj, "alterar");
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/remover/{id}")
     public ResponseEntity<RespostaModelo> remover(@PathVariable Long id) {
         return servico.remover(id);
     }

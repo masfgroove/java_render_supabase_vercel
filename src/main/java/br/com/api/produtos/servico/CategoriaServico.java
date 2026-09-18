@@ -18,12 +18,10 @@ public class CategoriaServico {
     @Autowired
     private RespostaModelo resposta;
 
-    // Listar categorias
     public Iterable<Categoria> listar() {
         return acao.findAll();
     }
 
-    // Cadastrar ou Alterar Categoria
     public ResponseEntity<?> cadastrarAlterar(Categoria obj, String acaoTipo) {
         if (obj.getName() == null || obj.getName().isEmpty()) {
             resposta.setMensagem("O nome da categoria é obrigatório!");
@@ -37,7 +35,6 @@ public class CategoriaServico {
         }
     }
 
-    // Remover Categoria
     public ResponseEntity<RespostaModelo> remover(Long id) {
         acao.deleteById(id);
         resposta.setMensagem("A categoria foi removida com sucesso!");

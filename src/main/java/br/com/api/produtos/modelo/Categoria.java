@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Table(name = "categories")
@@ -20,8 +19,7 @@ import org.hibernate.annotations.UuidGenerator;
 public class Categoria {
 
     @Id
-    @GeneratedValue
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String name;

@@ -34,6 +34,8 @@ public class ClienteControle {
         return servico.cadastrarAlterar(obj, "cadastrar");
     }
 
+
+    
     @PutMapping("/alterar")
     public ResponseEntity<?> alterar(@RequestBody Cliente obj) {
         return servico.cadastrarAlterar(obj, "alterar");

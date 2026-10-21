@@ -25,4 +25,5 @@ public class Categoria {
     private String name;
     private String slug;
     private String imageUrl;
+    
 }

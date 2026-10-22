@@ -24,25 +24,30 @@ public class InscricaoControle {
     @Autowired
     private InscricaoServico isv;
 
-    @DeleteMapping("/remover/{codigo}")
-    public ResponseEntity<RespostaModelo> remover(@PathVariable long codigo) {
-        return isv.remover(codigo);
+    // Aceita GET em "/inscricoes" e "/inscricoes/listar"
+    @GetMapping(value = {"", "/listar"})
+    public Iterable<Inscricao> listar() {
+        return isv.listar();
     }
 
-    @PutMapping("/alterar")
-    public ResponseEntity<?> alterar(@RequestBody Inscricao obj) {
-        return isv.cadastrarAlterar(obj, "alterar");
-    }
-
-    // Aceita tanto POST em "/inscricoes" quanto em "/inscricoes/cadastrar"
+    // Aceita POST em "/inscricoes" e "/inscricoes/cadastrar"
     @PostMapping(value = {"", "/cadastrar"})
     public ResponseEntity<?> cadastrar(@RequestBody Inscricao obj) {
         return isv.cadastrarAlterar(obj, "cadastrar");
     }
 
-    // Aceita tanto GET em "/inscricoes" quanto em "/inscricoes/listar"
-    @GetMapping(value = {"", "/listar"})
-    public Iterable<Inscricao> listar() {
-        return isv.listar();
+    // Aceita PUT em "/inscricoes", "/inscricoes/alterar" e "/inscricoes/{codigo}"
+    @PutMapping(value = {"", "/alterar", "/{codigo}"})
+    public ResponseEntity<?> alterar(@RequestBody Inscricao obj, @PathVariable(required = false) Long codigo) {
+        if (codigo != null) {
+            obj.setCodigo(codigo); // Garante que o ID do caminho seja atribuído ao objeto
+        }
+        return isv.cadastrarAlterar(obj, "alterar");
+    }
+
+    // Aceita DELETE em "/inscricoes/{codigo}" e "/inscricoes/remover/{codigo}"
+    @DeleteMapping(value = {"/{codigo}", "/remover/{codigo}"})
+    public ResponseEntity<RespostaModelo> remover(@PathVariable long codigo) {
+        return isv.remover(codigo);
     }
 }

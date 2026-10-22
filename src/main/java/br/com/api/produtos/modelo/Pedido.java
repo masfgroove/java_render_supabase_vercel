@@ -20,7 +20,7 @@ public class Pedido {
     private BigDecimal valorTotal;
 
     @Column(nullable = false)
-    private String status; // PENDENTE, PAGO, ENVIADO, ENTREGUE
+    private String status;
 
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido = LocalDateTime.now();
@@ -35,6 +35,10 @@ public class Pedido {
 
     public BigDecimal getValorTotal() { return valorTotal; }
     public void setValorTotal(BigDecimal valorTotal) { this.valorTotal = valorTotal; }
+
+    // Alias em inglês exigido pelo serviço
+    public BigDecimal getTotalAmount() { return valorTotal; }
+    public void setTotalAmount(BigDecimal totalAmount) { this.valorTotal = totalAmount; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }

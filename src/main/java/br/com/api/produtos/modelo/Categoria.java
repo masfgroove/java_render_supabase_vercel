@@ -24,6 +24,10 @@ public class Categoria {
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
 
+    // Alias em inglês exigido pelo serviço
+    public String getName() { return nome; }
+    public void setName(String name) { this.nome = name; }
+
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
 }

@@ -39,6 +39,10 @@ public class OrderItem {
     public Integer getQuantidade() { return quantidade; }
     public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
 
+    // Alias em inglês exigido pelo serviço
+    public Integer getQuantity() { return quantidade; }
+    public void setQuantity(Integer quantity) { this.quantidade = quantity; }
+
     public BigDecimal getPrecoUnitario() { return precoUnitario; }
     public void setPrecoUnitario(BigDecimal precoUnitario) { this.precoUnitario = precoUnitario; }
 }

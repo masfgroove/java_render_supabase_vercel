@@ -20,7 +20,7 @@ public class Cliente {
     private String senha;
 
     @Column(name = "tipo_usuario")
-    private String tipoUsuario; // COMPRADOR ou VENDEDOR
+    private String tipoUsuario;
 
     public Cliente() {}
 
@@ -29,6 +29,10 @@ public class Cliente {
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
+
+    // Alias em inglês exigido pelo serviço
+    public String getName() { return nome; }
+    public void setName(String name) { this.nome = name; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }

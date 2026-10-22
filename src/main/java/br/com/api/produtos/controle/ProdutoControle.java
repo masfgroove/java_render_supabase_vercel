@@ -13,34 +13,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.produtos.modelo.Produto;
-import br.com.api.produtos.modelo.RespostaModelo;
 import br.com.api.produtos.servico.ProdutoServico;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class ProdutoControle {
 
     @Autowired
-    private ProdutoServico ps;
+    private ProdutoServico servico;
 
-    @GetMapping("/listar")
-    public Iterable<Produto> listar() {
-        return ps.listar();
-    }
-
-    @PostMapping("/cadastrar")
-    public ResponseEntity<?> cadastrar(@RequestBody Produto pm) {
-        return ps.cadastrarAlterar(pm, "cadastrar");
+    @DeleteMapping("/remover/{codigo}")
+    public ResponseEntity<Void> remover(@PathVariable Long codigo) {
+        return servico.remover(codigo);
     }
 
     @PutMapping("/alterar")
-    public ResponseEntity<?> alterar(@RequestBody Produto pm) {
-        return ps.cadastrarAlterar(pm, "alterar");
+    public ResponseEntity<?> alterar(@RequestBody Produto p) {
+        return servico.cadastrarAlterar(p, "alterar");
     }
 
-    @DeleteMapping("/remover/{codigo}")
-    public ResponseEntity<RespostaModelo> remover(@PathVariable Long codigo) {
-        return ps.remover(codigo);
+    @PostMapping("/cadastrar")
+    public ResponseEntity<?> cadastrar(@RequestBody Produto p) {
+        return servico.cadastrarAlterar(p, "cadastrar");
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity<Iterable<Produto>> listar() {
+        return servico.listar();
+    }
+
+    @GetMapping("/")
+    public String rota() {
+        vender: return "API de produtos funcionando com sucesso!";
     }
 }

@@ -1,29 +1,29 @@
 package br.com.api.produtos.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "categories")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "mp_categorias")
 public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long codigo;
 
-    private String name;
-    private String slug;
-    private String imageUrl;
-    
+    @Column(nullable = false, unique = true)
+    private String nome;
+
+    @Column(columnDefinition = "TEXT")
+    private String descricao;
+
+    public Categoria() {}
+
+    public Long getCodigo() { return codigo; }
+    public void setCodigo(Long codigo) { this.codigo = codigo; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
 }

@@ -18,7 +18,14 @@ import br.com.api.produtos.servico.InscricaoServico;
 
 @RestController
 @RequestMapping("/inscricoes")
-@CrossOrigin(origins = "*")
+// Libera todas as origens, métodos (GET, POST, PUT, DELETE, OPTIONS) e cabeçalhos
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {
+    org.springframework.web.bind.annotation.RequestMethod.GET,
+    org.springframework.web.bind.annotation.RequestMethod.POST,
+    org.springframework.web.bind.annotation.RequestMethod.PUT,
+    org.springframework.web.bind.annotation.RequestMethod.DELETE,
+    org.springframework.web.bind.annotation.RequestMethod.OPTIONS
+})
 public class InscricaoControle {
 
     @Autowired
@@ -40,7 +47,7 @@ public class InscricaoControle {
     @PutMapping(value = {"", "/alterar", "/{codigo}"})
     public ResponseEntity<?> alterar(@RequestBody Inscricao obj, @PathVariable(required = false) Long codigo) {
         if (codigo != null) {
-            obj.setCodigo(codigo); // Garante que o ID do caminho seja atribuído ao objeto
+            obj.setId(codigo);
         }
         return isv.cadastrarAlterar(obj, "alterar");
     }
